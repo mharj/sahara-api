@@ -1,0 +1,1 @@
+// build commont WS interfaces here!
