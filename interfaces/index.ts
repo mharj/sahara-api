@@ -1,5 +1,6 @@
 
 export type AccessToken = string;
+export type IdToken = string;
 
 export enum ChannelEnum {
 	ROOT = 'root',
