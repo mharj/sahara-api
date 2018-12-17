@@ -12,5 +12,7 @@ export interface IChannel<C = string> {
 }
 
 export interface IType<T = string> {
-	_type: T;
+	readonly _type: T;
 }
+
+export type IKeys = IChannel<string> & IType<string>;
