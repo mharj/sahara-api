@@ -1,10 +1,14 @@
 import {ChannelEnum} from '../../../interfaces';
-import {IRootRegisteredRespAction, IRootUnregisteredRespAction, RootResp} from '../../../interfaces/resp/root';
+import {RootResp, RootRespAction} from '../../../interfaces/resp/root';
 
-export const actionRootRegistered = (): IRootRegisteredRespAction => {
+export const actionRootRegistered = (): RootRespAction => {
 	return {_channel: ChannelEnum.ROOT, _type: RootResp.REGISTERED};
 };
 
-export const actionRootUnregistered = (): IRootUnregisteredRespAction => {
+export const actionRootUnregistered = (): RootRespAction => {
 	return {_channel: ChannelEnum.ROOT, _type: RootResp.UNREGISTERED};
 };
+
+export const actionRootError = (message: string): RootRespAction => {
+	return {_channel: ChannelEnum.ROOT, _type: RootResp.ERROR, message};
+}
