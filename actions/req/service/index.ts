@@ -5,7 +5,7 @@ export const actionServiceLogin = (serviceId: string, serviceSecret: string): Se
 	return {_channel: ChannelEnum.SERVICE, _type: ServiceReq.LOGIN, serviceId, serviceSecret};
 };
 
-export const keysServiceRegister = (): IKeys => {
+export const keysServiceLogin = (): IKeys => {
 	return {_channel: ChannelEnum.SERVICE, _type: ServiceReq.LOGIN};
 };
 
