@@ -1,25 +1,23 @@
 import {IType} from '../../index';
 import {IServiceChannel} from '../../serviceChannel';
+import {AccessToken} from '../../tokens';
 
 export enum ServiceResp {
-	UNREGISTERED = 'UNREGISTERED',
-	LOGIN = 'LOGIN',
-	ERROR = 'ERROR',
+	UNREGISTER = 'UNREGISTER',
+	REGISTER = 'REGISTER',
 }
 
-export interface IServiceUnregisteredRespAction extends IType<ServiceResp>, IServiceChannel {
-	_type: ServiceResp.UNREGISTERED;
+export interface IServiceUnregisterRespAction extends IType<ServiceResp>, IServiceChannel {
+	_type: ServiceResp.UNREGISTER;
+	token: AccessToken;
+	issuer: string;
 }
 
-export interface IServiceLoginRespAction extends IType<ServiceResp>, IServiceChannel {
-	_type: ServiceResp.LOGIN;
-	serviceId: string;
-	serviceSecret: string;
+export interface IServiceRegisterRespAction extends IType<ServiceResp>, IServiceChannel {
+	_type: ServiceResp.REGISTER;
+	token: AccessToken;
+	issuer: string;
 }
 
-export interface IServiceErrorRespAction extends IType<ServiceResp>, IServiceChannel {
-	_type: ServiceResp.ERROR;
-	message: string;
-}
+export type ServiceRespAction = IServiceUnregisterRespAction | IServiceRegisterRespAction;
 
-export type RootRespAction = IServiceUnregisteredRespAction | IServiceLoginRespAction | IServiceErrorRespAction;
