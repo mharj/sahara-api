@@ -1,5 +1,6 @@
 export enum ChannelEnum {
 	ROOT = 'root',
+	SERVICE = 'service',
 	WEATHER = 'weather',
 }
 
