@@ -13,7 +13,7 @@ export const actionServiceUnregistered = (): ServiceReqAction => {
 	return {_channel: ChannelEnum.SERVICE, _type: ServiceReq.UNREGISTERED};
 };
 
-export const actionRootError = (message: string): ServiceReqAction => {
+export const actionServiceError = (message: string): ServiceReqAction => {
 	return {_channel: ChannelEnum.SERVICE, _type: ServiceReq.ERROR, message};
 }
 
