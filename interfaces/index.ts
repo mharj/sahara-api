@@ -18,6 +18,8 @@ type IEachKeys = keyof IChannel<string> | keyof IType<string>;
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type ActionData<A extends IKeys> = Omit<A, IEachKeys>;
 
+export type ActionMapperType<E extends string,AT> = {[key in E]: AT};
+
 export const getActionKeys = (actionFunction: () => IKeys): IKeys => {
 	const action = actionFunction();
 	if ( action._channel !== null && action._type !== null ) {

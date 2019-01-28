@@ -1,5 +1,5 @@
-import {ChannelEnum, IKeys} from '../../../interfaces';
-import {IWeatherPack, WeatherReq, WeatherReqAction} from '../../../interfaces/req/weather';
+import {ActionMapperType, ChannelEnum} from '../../../interfaces';
+import {IWeatherPack, WeatherReq, WeatherReqAction, WeatherReqEnumKeys, WeatherReqKey} from '../../../interfaces/req/weather';
 
 export const actionWeatherRegister = (list: IWeatherPack[]): WeatherReqAction => {
 	return {_channel: ChannelEnum.WEATHER, _type: WeatherReq.REGISTER, list};
@@ -9,10 +9,12 @@ export const actionWeatherUnregister = (list: IWeatherPack[]): WeatherReqAction 
 	return {_channel: ChannelEnum.WEATHER, _type: WeatherReq.UNREGISTER, list};
 };
 
-export const keysWeatherRegister = (): IKeys => {
-	return {_channel: ChannelEnum.WEATHER, _type: WeatherReq.REGISTER};
+export const actionWeatherSession = (session: string): WeatherReqAction => {
+	return {_channel: ChannelEnum.WEATHER, _type: WeatherReq.SESSION, session};
 };
 
-export const keysWeatherUnregister = (): IKeys => {
-	return {_channel: ChannelEnum.WEATHER, _type: WeatherReq.UNREGISTER};
+export const actionKeysMapper: ActionMapperType<WeatherReqEnumKeys, WeatherReqKey> = {
+	REGISTER: {_channel: ChannelEnum.WEATHER, _type: WeatherReq.REGISTER},
+	SESSION: {_channel: ChannelEnum.WEATHER, _type: WeatherReq.UNREGISTER},
+	UNREGISTER: {_channel: ChannelEnum.WEATHER, _type: WeatherReq.SESSION},
 };

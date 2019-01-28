@@ -1,5 +1,5 @@
-import {ChannelEnum, IKeys} from '../../../interfaces';
-import {RootReq, RootReqAction} from '../../../interfaces/req/root';
+import {ActionMapperType, ChannelEnum} from '../../../interfaces';
+import {RootReq, RootReqAction, RootReqEnumKeys, RootReqKey} from '../../../interfaces/req/root';
 import {AccessToken} from '../../../interfaces/tokens';
 
 export const actionRootRegister = (token: AccessToken): RootReqAction => {
@@ -10,10 +10,7 @@ export const actionRootUnregister = (token: AccessToken): RootReqAction => {
 	return {_channel: ChannelEnum.ROOT, _type: RootReq.UNREGISTER, token};
 };
 
-export const keysRootRegister = (): IKeys => {
-	return {_channel: ChannelEnum.ROOT, _type: RootReq.REGISTER};
-};
-
-export const keysRootUnregister = (): IKeys => {
-	return {_channel: ChannelEnum.ROOT, _type: RootReq.UNREGISTER};
+export const actionKeysMapper: ActionMapperType<RootReqEnumKeys, RootReqKey> = {
+	REGISTER: {_channel: ChannelEnum.ROOT, _type: RootReq.REGISTER},
+	UNREGISTER: {_channel: ChannelEnum.ROOT, _type: RootReq.UNREGISTER},
 };

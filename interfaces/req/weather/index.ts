@@ -1,9 +1,12 @@
 import {IType} from '../../index';
 import {IWeatherChannel} from '../../weatherChannel';
 
+export type WeatherReqEnumKeys = 'UNREGISTER' | 'REGISTER' | 'SESSION';
+
 export enum WeatherReq {
 	UNREGISTER = 'UNREGISTER',
 	REGISTER = 'REGISTER',
+	SESSION = 'SESSION',
 }
 
 export interface IWeatherPack {
@@ -11,14 +14,29 @@ export interface IWeatherPack {
 	lang: string;
 }
 
-export interface IWeatherUnregisterReqAction extends IType<WeatherReq>, IWeatherChannel {
+// key types
+export type IWeatherUnregisterReqKey = IType<WeatherReq> & IWeatherChannel & {
 	_type: WeatherReq.UNREGISTER;
-	list: IWeatherPack[];
 }
 
-export interface IWeatherRegisterReqAction extends IType<WeatherReq>, IWeatherChannel {
+export type IWeatherRegisterReqKey = IType<WeatherReq> & IWeatherChannel & {
 	_type: WeatherReq.REGISTER;
+}
+
+export type IWeatherSessionReqKey = IType<WeatherReq> & IWeatherChannel & {
+	_type: WeatherReq.SESSION;
+}
+// action types
+
+export interface IWeatherUnregisterReqAction extends IWeatherUnregisterReqKey {
 	list: IWeatherPack[];
 }
 
-export type WeatherReqAction = IWeatherUnregisterReqAction | IWeatherRegisterReqAction;
+export interface IWeatherRegisterReqAction extends IWeatherRegisterReqKey {
+	list: IWeatherPack[];
+}
+export interface IWeatherSessionReqAction extends IWeatherSessionReqKey {
+	session: string;
+}
+export type WeatherReqAction = IWeatherUnregisterReqAction | IWeatherRegisterReqAction | IWeatherSessionReqAction;
+export type WeatherReqKey = IWeatherUnregisterReqKey | IWeatherRegisterReqKey | IWeatherSessionReqKey;
